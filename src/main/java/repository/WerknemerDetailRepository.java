@@ -1,54 +1,53 @@
 package repository;
 
-import entity.Gebruiker;
-import entity.GebruikerDetail;
+import entity.WerknemerDetail;
 import jakarta.persistence.EntityManager;
 
-public class GebruikerDetailRepository {
+public class WerknemerDetailRepository {
 
     private EntityManager entityManager;
 
-    public GebruikerDetailRepository(EntityManager entityManager) {
+    public WerknemerDetailRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
-    public GebruikerDetail createGebruikerDetail(GebruikerDetail gebruikerDetail) {
+    public WerknemerDetail createWerknemerDetail(WerknemerDetail werknemerDetail) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(gebruikerDetail);
+            entityManager.persist(werknemerDetail);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return gebruikerDetail;
+        return werknemerDetail;
     }
 
 
 
-    public GebruikerDetail deleteGebruikerDetail(GebruikerDetail gebruikerDetail){
+    public WerknemerDetail deleteWerknemerDetail(WerknemerDetail werknemerDetail){
         try{
             entityManager.getTransaction().begin();
-            entityManager.find(GebruikerDetail.class, gebruikerDetail.getId());
-            if(gebruikerDetail != null)  entityManager.remove(gebruikerDetail);
+            entityManager.find(WerknemerDetail.class, werknemerDetail.getId());
+            if(werknemerDetail != null)  entityManager.remove(werknemerDetail);
             entityManager.getTransaction().commit();
         }catch (Exception e){
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
-        return gebruikerDetail;
+        return werknemerDetail;
     }
 
 
-    public GebruikerDetail updateGebruikerDetail(GebruikerDetail gebruikerDetail){
+    public WerknemerDetail updateWerknemerDetail(WerknemerDetail werknemerDetail){
         try{
             entityManager.getTransaction().begin();
-            entityManager.find(GebruikerDetail.class, gebruikerDetail.getId());
-            entityManager.merge(gebruikerDetail);
+            entityManager.find(WerknemerDetail.class, werknemerDetail.getId());
+            entityManager.merge(werknemerDetail);
             entityManager.getTransaction().commit();
         }catch (Exception e){
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
-        return gebruikerDetail;
+        return werknemerDetail;
     }
 }

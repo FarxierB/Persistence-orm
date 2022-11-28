@@ -1,40 +1,43 @@
-import entity.Gebruiker;
-import entity.GebruikerDetail;
-import jakarta.persistence.Query;
-import service.GebruikerDetailService;
-import service.GebruikerService;
+import entity.Werknemer;
+import entity.WerknemerDetail;
+import service.WerknemerDetailService;
+import service.WerknemerService;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        GebruikerService gebruikerService = new GebruikerService();
-        GebruikerDetailService gebruikerDetailService = new GebruikerDetailService();
+        WerknemerService werknemerService = new WerknemerService();
+        WerknemerDetailService werknemerDetailService = new WerknemerDetailService();
 
-        GebruikerDetail adres1 = new GebruikerDetail();
+        WerknemerDetail adres1 = new WerknemerDetail();
         adres1.setAdress("Elisabethshof #3");
         adres1.setBankNaam("Republic Bank");
         adres1.setGeboorteDatum("12-12-1992");
 
-        GebruikerDetail personToAdres1 = gebruikerDetailService.createGebruikerDetail(adres1);
+        WerknemerDetail personToAdres1 = werknemerDetailService.createGebruikerDetail(adres1);
 
-        Gebruiker person1 = new Gebruiker();
+        Werknemer person1 = new Werknemer();
         person1.setVoornaam("Shaq");
         person1.setAchternaam("O'Neil");
         person1.setUsername("soneil");
         person1.setPassword("########");
-        person1.setGebruikerDetailId(personToAdres1);
+        person1.setWerknemerDetailId(personToAdres1);
 
-        gebruikerService.createGebruiker(person1);
+        werknemerService.createWerknemer(person1);
 
-
+/*
         person1.setVoornaam("Dhiradj");
         person1.setAchternaam("Bechan");
-        gebruikerService.updateGebruiker(person1);
+        werknemerService.createWerknemer(person1);*/
        // gebruikerService.deleteGebruiker(Person1);
 
+        Werknemer werknemer = werknemerService.getWerknemer(person1);
 
-
+        werknemer.setVoornaam("Dhiradj");
+        werknemer.setAchternaam("Bechan");
+        werknemerService.createWerknemer(werknemer);
+        // gebruikerService.deleteGebruiker(Person1);
 
 
 
